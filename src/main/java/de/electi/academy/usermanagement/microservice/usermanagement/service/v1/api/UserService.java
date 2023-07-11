@@ -5,7 +5,8 @@ import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.m
 import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.models.UserListResponseModel;
 import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.models.UserResponseModel;
 
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 
 public interface UserService {
     UserResponseModel addUser(UserAddModel userAddModel);

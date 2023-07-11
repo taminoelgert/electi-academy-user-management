@@ -10,9 +10,10 @@ import java.util.UUID;
 public class AuthenticationCheckComponent {
     @Autowired
     HttpServletRequest httpServletRequest;
-    public UUID isUserAuthenticated(){
+
+    public UUID isUserAuthenticated() {
         Object userId = httpServletRequest.getSession().getAttribute("userId");
-        if(userId == null) throw new RuntimeException("User is not logged in");
+        if (userId == null) throw new RuntimeException("User is not logged in");
         return (UUID) userId;
     }
 }

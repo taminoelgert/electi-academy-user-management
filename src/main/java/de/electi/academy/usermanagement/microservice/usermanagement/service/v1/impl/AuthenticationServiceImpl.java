@@ -16,9 +16,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public LoginResponseModel login(String email, String password) {
         User user = userRepository.findFirstByEmailEquals(email);
-        if(user == null)
+        if (user == null)
             throw new RuntimeException("Username or password wrong");
-        if(!user.getPassword().equals(password))
+        if (!user.getPassword().equals(password))
             throw new RuntimeException("Username or password wrong");
         LoginResponseModel loginResponseModel = new LoginResponseModel();
         loginResponseModel.setAdmin(user.isAdmin());

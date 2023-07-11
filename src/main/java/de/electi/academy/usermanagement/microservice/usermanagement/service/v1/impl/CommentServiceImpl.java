@@ -25,21 +25,21 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentResponseModel> list(UUID userId) {
         ResponseEntity<List<CommentResponseModel>> response = commentsClient.list(userId);
-        if(response.getStatusCode() == HttpStatus.OK) return response.getBody();
+        if (response.getStatusCode() == HttpStatus.OK) return response.getBody();
         throw new RuntimeException("Unknown Response code from comments service: " + response.getStatusCode().value());
     }
 
     @Override
     public void delete(UUID userId) {
         ResponseEntity<?> response = commentsClient.delete(userId);
-        if(response.getStatusCode() == HttpStatus.NO_CONTENT) return;
+        if (response.getStatusCode() == HttpStatus.NO_CONTENT) return;
         throw new RuntimeException("Unknown Response code from comments service: " + response.getStatusCode().value());
     }
 
     @Override
     public List<CommentResponseModel> add(CommentAddModel commentAddModel) {
         ResponseEntity<List<CommentResponseModel>> response = commentsClient.add(commentAddModel);
-        if(response.getStatusCode() == HttpStatus.CREATED) return response.getBody();
+        if (response.getStatusCode() == HttpStatus.CREATED) return response.getBody();
         throw new RuntimeException("Unknown Response code from comments service: " + response.getStatusCode().value());
     }
 }

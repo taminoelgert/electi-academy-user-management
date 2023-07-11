@@ -18,5 +18,5 @@ public interface CommentsClient {
     ResponseEntity<List<CommentResponseModel>> add(@RequestBody CommentAddModel commentPostModel);
 
     @DeleteMapping()
-    public ResponseEntity<?> delete(@RequestParam(name = "userId") UUID userId);
+    ResponseEntity<?> delete(@RequestParam(name = "userId") UUID userId);
 }

@@ -18,7 +18,7 @@ public class UserResponseModel {
     boolean admin;
     List<CommentResponseModel> comments;
 
-    public static UserResponseModel fromEntity(User user, List<CommentResponseModel> comments){
+    public static UserResponseModel fromEntity(User user, List<CommentResponseModel> comments) {
         UserResponseModel userResponseModel = new UserResponseModel();
         userResponseModel.setName(user.getName());
         userResponseModel.setAdmin(user.isAdmin());

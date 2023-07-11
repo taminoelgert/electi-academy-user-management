@@ -35,7 +35,8 @@ public class UserController {
         } catch (RuntimeException runtimeException) {
             return new ResponseEntity<>(runtimeException.getMessage(), HttpStatus.UNAUTHORIZED);
         }
-        if (!authorizationService.isUserAdmin(executingUserId)) return new ResponseEntity<>("User is not an admin", HttpStatus.FORBIDDEN);
+        if (!authorizationService.isUserAdmin(executingUserId))
+            return new ResponseEntity<>("User is not an admin", HttpStatus.FORBIDDEN);
         try {
             return new ResponseEntity<>(userService.addUser(userAddModel), HttpStatus.CREATED);
         } catch (IllegalStateException illegalStateException) {
@@ -44,14 +45,15 @@ public class UserController {
     }
 
     @PutMapping
-    ResponseEntity<?> updateUser(@RequestBody UserEditModel userEditModel){
+    ResponseEntity<?> updateUser(@RequestBody UserEditModel userEditModel) {
         UUID executingUserId;
         try {
             executingUserId = authenticationCheckComponent.isUserAuthenticated();
         } catch (RuntimeException runtimeException) {
             return new ResponseEntity<>(runtimeException.getMessage(), HttpStatus.UNAUTHORIZED);
         }
-        if (!authorizationService.isUserAdmin(executingUserId) && !executingUserId.equals(userEditModel.getUserId())) return new ResponseEntity<>("User is not an admin", HttpStatus.FORBIDDEN);
+        if (!authorizationService.isUserAdmin(executingUserId) && !executingUserId.equals(userEditModel.getUserId()))
+            return new ResponseEntity<>("User is not an admin", HttpStatus.FORBIDDEN);
         try {
             return new ResponseEntity<>(userService.updateUser(userEditModel), HttpStatus.OK);
         } catch (IllegalStateException illegalStateException) {
@@ -62,7 +64,7 @@ public class UserController {
     }
 
     @GetMapping()
-    ResponseEntity<?> getUser(@RequestParam(name = "userId") UUID userId){
+    ResponseEntity<?> getUser(@RequestParam(name = "userId") UUID userId) {
         try {
             authenticationCheckComponent.isUserAuthenticated();
         } catch (RuntimeException runtimeException) {
@@ -76,7 +78,7 @@ public class UserController {
     }
 
     @DeleteMapping
-    ResponseEntity<?> deleteUser(@RequestParam(name = "userId") UUID userId){
+    ResponseEntity<?> deleteUser(@RequestParam(name = "userId") UUID userId) {
         try {
             authenticationCheckComponent.isUserAuthenticated();
         } catch (RuntimeException runtimeException) {
@@ -91,7 +93,7 @@ public class UserController {
     }
 
     @GetMapping("list")
-    ResponseEntity<?> listUser(){
+    ResponseEntity<?> listUser() {
         try {
             authenticationCheckComponent.isUserAuthenticated();
         } catch (RuntimeException runtimeException) {

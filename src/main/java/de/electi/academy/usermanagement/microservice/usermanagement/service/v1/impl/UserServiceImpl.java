@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseModel addUser(UserAddModel userAddModel) {
-        if(userRepository.findFirstByEmailEquals(userAddModel.getEmail())!=null) throw new IllegalStateException("There is already a user with this email");
+        if (userRepository.findFirstByEmailEquals(userAddModel.getEmail()) != null)
+            throw new IllegalStateException("There is already a user with this email");
         User user = new User();
         user.setAdmin(userAddModel.isAdmin());
         user.setEmail(userAddModel.getEmail());
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userAddModel.getPassword());
         userRepository.save(user);
         List<Flag> flags = new ArrayList<>();
-        if(userAddModel.getFlags() != null)
+        if (userAddModel.getFlags() != null)
             for (FlagModel flagModel : userAddModel.getFlags()) {
                 Flag flag = new Flag();
                 flag.setColor(flagModel.getColor());
@@ -53,8 +54,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseModel updateUser(UserEditModel userEditModel) {
         Optional<User> userOptional = userRepository.findById(userEditModel.getUserId());
-        if(userOptional.isEmpty()) throw new NoSuchElementException("User not found");
-        if(userRepository.findFirstByEmailEqualsAndUserIdNot(userEditModel.getEmail(), userEditModel.getUserId())!=null) throw new IllegalStateException("There is already a user with this email");
+        if (userOptional.isEmpty()) throw new NoSuchElementException("User not found");
+        if (userRepository.findFirstByEmailEqualsAndUserIdNot(userEditModel.getEmail(), userEditModel.getUserId()) != null)
+            throw new IllegalStateException("There is already a user with this email");
         User user = userOptional.get();
         user.setAdmin(userEditModel.isAdmin());
         user.setEmail(userEditModel.getEmail());
@@ -63,7 +65,7 @@ public class UserServiceImpl implements UserService {
         user.setModifiedDate(new Date());
         userRepository.save(user);
         List<Flag> flags = new ArrayList<>();
-        if(userEditModel.getFlags() != null)
+        if (userEditModel.getFlags() != null)
             for (FlagModel flagModel : userEditModel.getFlags()) {
                 Flag flag = new Flag();
                 flag.setColor(flagModel.getColor());
@@ -71,8 +73,7 @@ public class UserServiceImpl implements UserService {
                 flag.setUser(user);
                 flags.add(flag);
             }
-        if(!flags.equals(user.getFlags())){
-            System.out.println("updated flags");
+        if (!flags.equals(user.getFlags())) {
             flagRepository.deleteAll(user.getFlags());
             user.setFlags(flags);
             flagRepository.saveAll(flags);
@@ -83,14 +84,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseModel getUser(UUID userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()) throw new NoSuchElementException("User not found");
+        if (userOptional.isEmpty()) throw new NoSuchElementException("User not found");
         return UserResponseModel.fromEntity(userOptional.get(), commentService.list(userId));
     }
 
     @Override
     public void deleteUser(UUID userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()) throw new NoSuchElementException("User not found");
+        if (userOptional.isEmpty()) throw new NoSuchElementException("User not found");
         userRepository.delete(userOptional.get());
     }
 

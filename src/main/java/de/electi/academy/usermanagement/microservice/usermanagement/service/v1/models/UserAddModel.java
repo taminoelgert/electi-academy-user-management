@@ -3,7 +3,9 @@ package de.electi.academy.usermanagement.microservice.usermanagement.service.v1.
 import lombok.Data;
 import lombok.NonNull;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+
 @Data
 public class UserAddModel {
 

@@ -18,7 +18,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Override
     public boolean isUserAdmin(UUID userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()) throw new RuntimeException("User authentication failed");
+        if (userOptional.isEmpty()) throw new RuntimeException("User authentication failed");
         return userOptional.get().isAdmin();
     }
 }
