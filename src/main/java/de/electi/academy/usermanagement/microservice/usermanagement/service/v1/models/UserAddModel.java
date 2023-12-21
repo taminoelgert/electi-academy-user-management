@@ -10,13 +10,13 @@ import java.util.List;
 public class UserAddModel {
 
     @NonNull
-    String name;
+    private String name;
     @NonNull
-    String email;
+    private String email;
     @NonNull
-    String password;
-    Date birthdate;
-    List<FlagModel> flags;
-    boolean admin;
+    private String password;
+    private Date birthdate;
+    private List<FlagModel> flags;
+    private Boolean admin;
 
 }

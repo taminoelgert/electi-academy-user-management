@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AuthenticationController {
 
     @Autowired
-    HttpServletRequest httpServletRequest;
+    private HttpServletRequest httpServletRequest;
 
     @Autowired
-    AuthenticationService authenticationService;
+    private AuthenticationService authenticationService;
 
     @PostMapping("login")
     ResponseEntity<?> login(@RequestParam(name = "email") String email, @RequestParam(name = "password") String password) {

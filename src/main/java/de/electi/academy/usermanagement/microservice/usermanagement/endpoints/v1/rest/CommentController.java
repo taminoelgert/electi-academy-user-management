@@ -22,13 +22,13 @@ public class CommentController {
     private static final Logger LOG = LoggerFactory.getLogger(CommentController.class);
 
     @Autowired
-    CommentService commentService;
+    private CommentService commentService;
 
     @Autowired
-    AuthenticationCheckComponent authenticationCheckComponent;
+    private AuthenticationCheckComponent authenticationCheckComponent;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     //lists all comments of user
     @GetMapping()

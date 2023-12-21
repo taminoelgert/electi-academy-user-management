@@ -13,7 +13,7 @@ import java.util.UUID;
 public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
     public boolean isUserAdmin(UUID userId) {

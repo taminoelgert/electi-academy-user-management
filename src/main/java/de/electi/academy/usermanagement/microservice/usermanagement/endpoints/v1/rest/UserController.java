@@ -19,13 +19,13 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    AuthenticationCheckComponent authenticationCheckComponent;
+    private AuthenticationCheckComponent authenticationCheckComponent;
 
     @Autowired
-    AuthorizationService authorizationService;
+    private AuthorizationService authorizationService;
 
     @PostMapping
     ResponseEntity<?> addUser(@RequestBody UserAddModel userAddModel) {

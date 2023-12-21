@@ -10,13 +10,13 @@ import java.util.stream.Collectors;
 
 @Data
 public class UserResponseModel {
-    UUID userId;
-    String name;
-    String email;
-    Date birthdate;
-    List<FlagModel> flags;
-    boolean admin;
-    List<CommentResponseModel> comments;
+    private UUID userId;
+    private String name;
+    private String email;
+    private Date birthdate;
+    private List<FlagModel> flags;
+    private boolean admin;
+    private List<CommentResponseModel> comments;
 
     public static UserResponseModel fromEntity(User user, List<CommentResponseModel> comments) {
         UserResponseModel userResponseModel = new UserResponseModel();

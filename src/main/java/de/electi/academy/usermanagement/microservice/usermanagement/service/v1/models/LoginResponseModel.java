@@ -6,8 +6,8 @@ import java.util.UUID;
 
 @Data
 public class LoginResponseModel {
-    UUID userId;
-    String name;
-    String email;
-    boolean admin;
+    private UUID userId;
+    private String name;
+    private String email;
+    private boolean admin;
 }

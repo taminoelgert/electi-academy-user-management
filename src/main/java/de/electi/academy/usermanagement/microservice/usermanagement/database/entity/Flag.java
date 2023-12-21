@@ -16,8 +16,7 @@ public class Flag {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)")
-
-    UUID flagId;
+    private UUID flagId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

@@ -8,6 +8,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class CommentResponseModel {
-    String message;
-    Date creationDate;
+    private String message;
+    private Date creationDate;
 }

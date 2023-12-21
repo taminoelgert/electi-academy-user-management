@@ -11,13 +11,13 @@ import java.util.UUID;
 public class UserEditModel {
 
     @NonNull
-    UUID userId;
+    private UUID userId;
     @NonNull
-    String name;
+    private String name;
     @NonNull
-    String email;
-    Date birthdate;
-    List<FlagModel> flags;
-    boolean admin;
+    private String email;
+    private Date birthdate;
+    private List<FlagModel> flags;
+    private Boolean admin;
 
 }

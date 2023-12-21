@@ -9,7 +9,7 @@ import java.util.UUID;
 @Component
 public class AuthenticationCheckComponent {
     @Autowired
-    HttpServletRequest httpServletRequest;
+    private HttpServletRequest httpServletRequest;
 
     public UUID isUserAuthenticated() {
         Object userId = httpServletRequest.getSession().getAttribute("userId");

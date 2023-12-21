@@ -6,6 +6,6 @@ import java.util.UUID;
 
 @Data
 public class CommentAddModel {
-    UUID userId;
-    String message;
+    private UUID userId;
+    private String message;
 }

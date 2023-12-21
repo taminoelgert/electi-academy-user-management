@@ -16,20 +16,20 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    CommentService commentService;
+    private CommentService commentService;
 
     @Autowired
-    FlagRepository flagRepository;
+    private FlagRepository flagRepository;
 
     @Override
     public UserResponseModel addUser(UserAddModel userAddModel) {
         if (userRepository.findFirstByEmailEquals(userAddModel.getEmail()) != null)
             throw new IllegalStateException("There is already a user with this email");
         User user = new User();
-        user.setAdmin(userAddModel.isAdmin());
+        user.setAdmin(userAddModel.getAdmin() == Boolean.TRUE);
         user.setEmail(userAddModel.getEmail());
         user.setName(userAddModel.getName());
         user.setBirthDate(userAddModel.getBirthdate());
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findFirstByEmailEqualsAndUserIdNot(userEditModel.getEmail(), userEditModel.getUserId()) != null)
             throw new IllegalStateException("There is already a user with this email");
         User user = userOptional.get();
-        user.setAdmin(userEditModel.isAdmin());
+        user.setAdmin(userEditModel.getAdmin() == Boolean.TRUE);
         user.setEmail(userEditModel.getEmail());
         user.setName(userEditModel.getName());
         user.setBirthDate(userEditModel.getBirthdate());

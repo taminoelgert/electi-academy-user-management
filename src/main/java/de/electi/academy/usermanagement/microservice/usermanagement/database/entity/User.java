@@ -15,19 +15,19 @@ public class User {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @Column(columnDefinition = "BINARY(16)")
-    UUID userId;
+    private UUID userId;
 
-    String name;
+    private String name;
 
-    String email;
+    private String email;
 
-    Date birthDate;
+    private Date birthDate;
 
-    Date creationDate;
+    private Date creationDate;
 
-    Date modifiedDate;
+    private Date modifiedDate;
 
-    String password;
+    private String password;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Flag> flags;

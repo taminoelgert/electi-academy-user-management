@@ -17,10 +17,10 @@ import java.util.UUID;
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
-    CommentsClient commentsClient;
+    private CommentsClient commentsClient;
 
     @Autowired
-    AuthorizationService authorizationService;
+    private AuthorizationService authorizationService;
 
     @Override
     public List<CommentResponseModel> list(UUID userId) {

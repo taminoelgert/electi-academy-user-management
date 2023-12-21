@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 
 @Data
 public class UserListResponseModel {
-    UUID userId;
-    String name;
-    Date birthdate;
-    String email;
-    List<FlagModel> flags;
-    boolean admin;
+    private UUID userId;
+    private String name;
+    private Date birthdate;
+    private String email;
+    private List<FlagModel> flags;
+    private boolean admin;
 
 
     public static UserListResponseModel fromEntity(User user) {
