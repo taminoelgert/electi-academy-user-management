@@ -1,6 +1,7 @@
 package de.electi.academy.usermanagement.microservice.usermanagement.endpoints.v1.rest;
 
 import de.electi.academy.usermanagement.microservice.usermanagement.components.AuthenticationCheckComponent;
+import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.api.AuthorizationService;
 import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.api.CommentService;
 import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.api.UserService;
 import de.electi.academy.usermanagement.microservice.usermanagement.service.v1.models.CommentAddModel;
@@ -29,6 +30,9 @@ public class CommentController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthorizationService authorizationService;
 
     //lists all comments of user
     @GetMapping()
@@ -77,11 +81,14 @@ public class CommentController {
     //deletes comments of user
     @DeleteMapping()
     public ResponseEntity<?> delete(@RequestParam(name = "userId") UUID userId) {
+        UUID executingUserId;
         try {
-            authenticationCheckComponent.isUserAuthenticated();
+            executingUserId = authenticationCheckComponent.isUserAuthenticated();
         } catch (RuntimeException runtimeException) {
             return new ResponseEntity<>(runtimeException.getMessage(), HttpStatus.UNAUTHORIZED);
         }
+        if (!authorizationService.isUserAdmin(executingUserId))
+            return new ResponseEntity<>("User is not an admin", HttpStatus.FORBIDDEN);
         try {
             userService.getUser(userId);
         } catch (NoSuchElementException noSuchElementException) {

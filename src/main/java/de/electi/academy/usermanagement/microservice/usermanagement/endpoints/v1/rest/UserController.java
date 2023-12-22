@@ -79,11 +79,14 @@ public class UserController {
 
     @DeleteMapping
     ResponseEntity<?> deleteUser(@RequestParam(name = "userId") UUID userId) {
+        UUID executingUserId;
         try {
-            authenticationCheckComponent.isUserAuthenticated();
+            executingUserId = authenticationCheckComponent.isUserAuthenticated();
         } catch (RuntimeException runtimeException) {
             return new ResponseEntity<>(runtimeException.getMessage(), HttpStatus.UNAUTHORIZED);
         }
+        if (!authorizationService.isUserAdmin(executingUserId))
+            return new ResponseEntity<>("User is not an admin", HttpStatus.FORBIDDEN);
         try {
             userService.deleteUser(userId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
